@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { RecoilRootProps, useRecoilValue, useRecoilState } from 'recoil';
 import { IUser, User, LoginState } from '../../Atoms';
+import { useNavigate } from 'react-router';
 
 const Login = () => {
+  const navigate = useNavigate();
   const [user, setUser] = useRecoilState<IUser>(User);
   const [inputData, setInputData] = useState<any>('');
   const [isLoggedIn, setIsLoggedIn] = useRecoilState<boolean>(LoginState);
@@ -15,6 +17,7 @@ const Login = () => {
     if (api(user)) {
       //페이지 이동
       console.log('페이지 이동');
+      navigate('/');
     } else {
       console.log('로그인실패');
     }
