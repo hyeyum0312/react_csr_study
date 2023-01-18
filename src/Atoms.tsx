@@ -1,28 +1,21 @@
 import { atom } from 'recoil';
 
-export const isToggleAtom = atom<any>({
-  key: 'isToggle',
+export interface IUser {
+  id: string;
+  pwd: string;
+  name: string;
+}
+
+export const User = atom<IUser>({
+  key: 'user',
+  default: {
+    id: 'admin',
+    pwd: 'pw',
+    name: '관리자',
+  },
+});
+
+export const LoginState = atom<boolean>({
+  key: 'LoginState',
   default: false,
 });
-
-export const textState = atom({
-  key: 'textState', // unique ID (with respect to other atoms/selectors)
-  default: '', // default value (aka initial value)
-});
-
-export const inputState = atom<string>({
-  key: 'inputState',
-  // key의 값은 항상 고유값이어야 합니다.
-
-  default: '',
-});
-
-//
-// export const charCountState = selector({
-//   key: 'charCountState', // unique ID (with respect to other atoms/selectors)
-//   get: ({ get }) => {
-//     const text = get(textState);
-//
-//     return text.length;
-//   },
-// });
